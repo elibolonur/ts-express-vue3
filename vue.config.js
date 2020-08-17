@@ -1,4 +1,10 @@
 module.exports = {
   lintOnSave: false,
-  outputDir: "./dist/client"
+  outputDir: "./dist/client",
+  devServer: {
+    overlay: {
+      warnings: false,
+      errors: true
+    }
+  }
 }
