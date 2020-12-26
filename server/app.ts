@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 
-app.set("port", process.env.SERVER_PORT || 3000)
+app.set("port", process.env.SERVER_PORT || 3000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", home.index);
