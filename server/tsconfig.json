@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
-    "typeRoots": ["node_modules/@types", "server/@types"],
+    "typeRoots": ["../node_modules/@types", "./@types"],
     "sourceMap": true,
     "baseUrl": "./",
     "types": [

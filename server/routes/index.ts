@@ -1,16 +1,23 @@
 import { Router } from 'express';
+import { authMw } from './middleware';
+import { login, logout } from './Auth';
 import { getAllUsers, addOneUser, updateOneUser, deleteOneUser } from './Users';
 
 
-// User-route
+// Auth router
+const authRouter = Router();
+authRouter.post('/login', login);
+authRouter.get('/logout', logout);
+
+// User router
 const userRouter = Router();
 userRouter.get('/all', getAllUsers);
 userRouter.post('/add', addOneUser);
 userRouter.put('/update', updateOneUser);
 userRouter.delete('/delete/:id', deleteOneUser);
 
-
-// Export the base-router
+// Base router (serves all others)
 const baseRouter = Router();
-baseRouter.use('/users', userRouter);
+baseRouter.use('/auth', authRouter);
+baseRouter.use('/users', authMw, userRouter);
 export default baseRouter;

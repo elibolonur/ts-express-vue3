@@ -1,14 +1,16 @@
 import cookieParser from 'cookie-parser';
+import http from 'http';
+import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
-import helmet from 'helmet';
-
-import express, { NextFunction, Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
+import express, { NextFunction, Request, Response } from 'express';
+
 import 'express-async-errors';
 
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
+import { cookieProps } from '@shared/constants';
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
@@ -21,7 +23,7 @@ const { BAD_REQUEST } = StatusCodes;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser());
+app.use(cookieParser(cookieProps.secret));
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {

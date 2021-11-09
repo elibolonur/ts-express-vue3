@@ -1,9 +1,13 @@
-import { IUser } from "@entities/User";
+import { IUser } from '@entities/User';
+import { IClientData } from '@shared/JwtService';
 
-declare namespace Express {
-    export interface Request  {
-        body: {
-            user: IUser
-        };
+declare module 'express-serve-static-core' {
+    interface ReqBody  {
+        user: IUser
+        email: string;
+        password: string;
+    }
+    interface Response {
+        sessionUser: IClientData;
     }
 }
