@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
-    "outDir": "dist/server",
+    "outDir": "../dist/server",
     "strict": true,
     "importHelpers": true,
     "moduleResolution": "node",
@@ -10,15 +10,24 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": ["node_modules/@types", "server/@types"],
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "types": [
       "webpack-env"
     ],
     "paths": {
-      "@/*": [
-        "server/*"
+      "@daos/*": [
+        "daos/*"
+      ],
+      "@entities/*": [
+        "entities/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
+      "@server": [
+        "Server"
       ]
     },
     "lib": [
@@ -28,9 +37,8 @@
       "scripthost"
     ]
   },
-  "files": ["server/app.ts"],
+  "files": ["Server.ts"],
   "include": [
-    "server/**/*.ts"
+    "./**/*.ts"
   ],
-  "exclude": ["node_modules", "dist"]
 }
