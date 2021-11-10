@@ -1,5 +1,9 @@
 <template>
-    {{ users }}
+    <div v-for="user in users" :key=user.id class="user">
+        <p>{{user.name}}</p>
+        <p>{{user.email}}</p>
+        <p>{{user.role}}</p>
+    </div>
 </template>
 
 <script lang="ts">
@@ -11,8 +15,8 @@ export default {
         const axios: any = inject('axios');
 
         const users: object[] = reactive([])
-
-        axios.get('http://localhost:3000/api/users/all')
+       
+        axios.get('users/all')
             .then((response : {data: {users: []}}) => {
                 users.push.apply(users, response.data.users);
             }).catch((error : any) => {
@@ -25,3 +29,11 @@ export default {
     },
 }
 </script>
+
+<style lang="scss" scoped>
+.user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+</style>

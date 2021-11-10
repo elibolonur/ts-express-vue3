@@ -19,7 +19,7 @@ export default {
       const router = useRouter();
 
       const logout = () => {
-          axios.get('http://localhost:3000/api/auth/logout')
+          axios.get('auth/logout')
             .then((response : any) => {
                 router.push('/')
             }).catch((error : any) => {

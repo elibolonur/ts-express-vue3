@@ -23,7 +23,7 @@ export default {
         });
 
         const login = () => {
-            axios.post('http://localhost:3000/api/auth/login', user)
+            axios.post('auth/login', user)
                 .then((error : any) => {
                     router.push('restricted');
                 }).catch((error : any) => {
