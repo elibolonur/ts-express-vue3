@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <login-component/> 
+    <login-component />
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import loginComponent from "@/components/login.vue"
 
 export default {
   components: {
-    loginComponent,
+    loginComponent
   }
 }
 </script>
