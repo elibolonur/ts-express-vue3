@@ -1,10 +1,11 @@
 import axios from 'axios'
+import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 
-export const requireAuth = async (_to: any, _from: any, next: any) => {
+export const requireAuth = async (_to: RouteLocationNormalized, _from: RouteLocationNormalized, next: NavigationGuardNext) => {
     await axios.get('auth/check')
-        .then((response : any) => {
+        .then((_response : any) => {
             next();
-        }).catch((error : any) => {
+        }).catch((_error : any) => {
             next('/');
         });
 }
