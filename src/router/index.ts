@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 import Home from "../views/Home.vue"
 import Restricted from "../views/Restricted.vue"
+import { requireAuth } from "./requireAuth"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,7 +12,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/restricted",
     name: "Restricted",
-    component: Restricted
+    component: Restricted,
+    beforeEnter: requireAuth
   }
 ]
 

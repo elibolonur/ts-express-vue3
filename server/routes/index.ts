@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { authMw } from './middleware';
-import { login, logout } from './Auth';
+import { login, logout, check } from './Auth';
 import { getAllUsers, addOneUser, updateOneUser, deleteOneUser } from './Users';
 
 
@@ -8,6 +8,7 @@ import { getAllUsers, addOneUser, updateOneUser, deleteOneUser } from './Users';
 const authRouter = Router();
 authRouter.post('/login', login);
 authRouter.get('/logout', logout);
+authRouter.get('/check', check);
 
 // User router
 const userRouter = Router();

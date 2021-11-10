@@ -67,3 +67,14 @@ export async function logout(req: Request, res: Response) {
     return res.status(OK).end();
 }
 
+/**
+ * Check Jwt Token.
+ * 
+ * @param req 
+ * @param res 
+ * @returns
+ */
+ export async function check(req: Request, res: Response) {
+    await jwtService.decodeJwt(req.signedCookies.ExpressGeneratorTs)
+    return res.status(OK).end();
+}
