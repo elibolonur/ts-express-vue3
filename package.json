@@ -13,6 +13,7 @@
     "dev:server": "nodemon --config ./nodemon.config.json",
     "build:server": "ts-node --compiler-options={\\\"module\\\":\\\"commonjs\\\"} build.ts",
     "test:server": "nodemon --config ./server/spec/nodemon.json",
+    "test:server:no-reload": "ts-node --project ./server/tsconfig.json -r tsconfig-paths/register --files ./server/spec/index.ts",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
