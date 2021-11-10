@@ -9,13 +9,13 @@
 
 <script lang="ts">
 import { reactive } from '@vue/reactivity'
-import axios from 'axios';
 import { useRouter } from 'vue-router';
-
-axios.defaults.withCredentials = true;
+import { inject } from 'vue';
 
 export default {
     setup() {
+        const axios: any = inject('axios');
+        
         const router = useRouter();
         const user = reactive({
             email  : 'sean.maxwell@gmail.com',
@@ -24,9 +24,9 @@ export default {
 
         const login = () => {
             axios.post('http://localhost:3000/api/auth/login', user)
-                .then(response => {
+                .then((error : any) => {
                     router.push('restricted');
-                }).catch(error => {
+                }).catch((error : any) => {
                     alert(error.message);
                 });
         }

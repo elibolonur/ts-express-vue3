@@ -3,18 +3,19 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios';
 import { reactive } from '@vue/reactivity';
-axios.defaults.withCredentials = true;
+import { inject } from 'vue';
 
 export default {
     setup() {
+        const axios: any = inject('axios');
+
         const users: object[] = reactive([])
 
         axios.get('http://localhost:3000/api/users/all')
-            .then(response => {
+            .then((response : {data: {users: []}}) => {
                 users.push.apply(users, response.data.users);
-            }).catch(error => {
+            }).catch((error : any) => {
                 alert(error.message);
             });
 

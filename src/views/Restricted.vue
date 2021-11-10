@@ -6,22 +6,23 @@
 
 <script lang="ts">
 import usersComponent from "@/components/users.vue"
-import axios from 'axios';
 import { useRouter } from 'vue-router';
-axios.defaults.withCredentials = true;
+import { inject } from 'vue';
 
 export default {
   components: {
     usersComponent,
   },
   setup () {
+      const axios: any = inject('axios');
+      
       const router = useRouter();
 
       const logout = () => {
           axios.get('http://localhost:3000/api/auth/logout')
-            .then(response => {
+            .then((response : any) => {
                 router.push('/')
-            }).catch(error => {
+            }).catch((error : any) => {
                 alert(error.message);
             });
       }
