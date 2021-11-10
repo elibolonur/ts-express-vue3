@@ -12,7 +12,6 @@ const { UNAUTHORIZED } = StatusCodes;
 // Middleware to verify if user is logged in
 export const authMw = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("middleware")
         // Get json-web-token
         const jwt = req.signedCookies[cookieProps.key];
         if (!jwt) {

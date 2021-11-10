@@ -1,6 +1,6 @@
 import cookieParser from 'cookie-parser';
-import http from 'http';
 import helmet from 'helmet';
+import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
 import StatusCodes from 'http-status-codes';
@@ -24,6 +24,15 @@ const { BAD_REQUEST } = StatusCodes;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(cookieProps.secret));
+
+app.use(cors({
+    origin: [
+      'http://localhost:8080',
+      'https://localhost:8080'
+    ],
+    credentials: true,
+    exposedHeaders: ['set-cookie']
+}));
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
