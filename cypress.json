@@ -1,0 +1,9 @@
+{
+    "baseUrl": "http://localhost:8080",
+    "env": {
+        "apiUrl": "http://localhost:3000",
+        "codeCoverage": {
+          "url": "http://localhost:3000/__coverage__"
+        }
+    }
+}

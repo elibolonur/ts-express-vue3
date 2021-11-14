@@ -7,6 +7,10 @@ node_modules
 .env.local
 .env.*.local
 
+# Coverage
+.nyc_output
+coverage
+
 # Cypress
 cypress/screenshots
 cypress/videos

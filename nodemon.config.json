@@ -7,5 +7,5 @@
     "**/*.test.ts"
   ],
   "exclude": ["./server/spec"],
-  "exec": "ts-node --project ./server/tsconfig.json -r tsconfig-paths/register --files ./server/index.ts"
+  "exec": "nyc ts-node --project ./tsconfig.json -r tsconfig-paths/register --files ./server/index.ts"
 }

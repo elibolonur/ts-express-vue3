@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { Request, Response, Router } from 'express';
 import StatusCodes from 'http-status-codes';
 

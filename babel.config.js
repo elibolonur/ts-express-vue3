@@ -31,5 +31,11 @@ module.exports = {
         ]
       ]
     }
-  }
+  },
+  plugins: [
+    ['babel-plugin-istanbul', {
+      extends: '@istanbuljs/nyc-config-typescript',
+      extension: ['.ts', '.tsx', '.js', '.vue']
+    }]
+  ]
 }

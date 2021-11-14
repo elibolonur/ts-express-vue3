@@ -1,6 +1,0 @@
-{
-  "watch": ["./server/spec"],
-  "ext": "spec.ts",
-  "ignore": ["./server/spec/support"],
-  "exec": "ts-node --project ./server/tsconfig.json -r tsconfig-paths/register --files ./server/spec/index.ts"
-}

@@ -16,7 +16,8 @@ logger.timestamp = false;
         await remove('./dist/');
         await copy('./server/pre-start/env/production.env', './dist/server/pre-start/env/production.env');
         // Copy back-end files
-        await exec('tsc --build ./server/tsconfig.prod.json', './')
+        await exec('tsc --build ./tsconfig.json', './')
+        await exec('npm run build:client', './')
     } catch (err) {
         logger.err(err);
     }

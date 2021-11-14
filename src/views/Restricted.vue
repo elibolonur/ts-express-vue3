@@ -1,7 +1,7 @@
 <template>
   <h1>This is a restricted page</h1>
   <usersComponent />
-  <button @click="logout">Logout</button>
+  <button @click="logout" data-cy="logout">Logout</button>
 </template>
 
 <script lang="ts">
@@ -17,21 +17,22 @@ export default {
   setup() {
     const axios: AxiosStatic | undefined = inject("axios")
 
-    const router = useRouter()
+    if (axios) {
+      const router = useRouter()
 
-    const logout = () => {
-      (axios as AxiosStatic)
-        .get("auth/logout")
-        .then(() => {
-          router.push("/")
-        })
-        .catch((error: Error) => {
-          alert(error.message)
-        })
-    }
+      const logout = () => {
+        axios.get("auth/logout")
+          .then(() => {
+            router.push("/")
+          })
+          .catch((error: Error) => {
+            alert(error.message)
+          })
+      }
 
-    return {
-      logout
+      return {
+        logout
+      }
     }
   }
 }

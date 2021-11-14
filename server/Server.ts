@@ -15,11 +15,14 @@ import { cookieProps } from '@shared/constants';
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
 
-
-
 /************************************************************************************
  *                              Set basic express settings
  ***********************************************************************************/
+/* istanbul ignore next */
+// @ts-ignore
+if (global.__coverage__) {
+    require("@cypress/code-coverage/middleware/express")(app);
+}
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -28,7 +31,8 @@ app.use(cookieParser(cookieProps.secret));
 app.use(cors({
     origin: [
       'http://localhost:8080',
-      'https://localhost:8080'
+      'https://localhost:8080',
+      '*'
     ],
     credentials: true,
     exposedHeaders: ['set-cookie']

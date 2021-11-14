@@ -5,20 +5,23 @@
   "private": true,
   "author": "Sébastien LEONCE",
   "scripts": {
-    "start": "node -r module-alias/register ./dist/server --env=production",
+    "start": "nyc node -r module-alias/register ./dist/server --env=production",
     "serve": "concurrently \"npm run dev:server\" \"npm run dev:client\" --raw",
     "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
     "dev:client": "vue-cli-service serve --mode development",
     "build:client": "vue-cli-service build --mode production",
+    "test:client": "start-server-and-test serve http://localhost:8080 cy:run",
     "dev:server": "nodemon --config ./nodemon.config.json",
     "build:server": "ts-node --compiler-options={\\\"module\\\":\\\"commonjs\\\"} build.ts",
     "test:server": "nodemon --config ./server/spec/nodemon.json",
-    "test:server:no-reload": "ts-node --project ./server/tsconfig.json -r tsconfig-paths/register --files ./server/spec/index.ts",
+    "test:server:no-reload": "ts-node --project ./tsconfig.json -r tsconfig-paths/register --files ./server/spec/index.ts",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "command-line-args": "^5.2.0",
     "cookie-parser": "^1.4.5",
@@ -43,7 +46,12 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
+    "@cypress/code-coverage": "^3.9.11",
+    "@cypress/instrument-cra": "^1.4.0",
+    "@cypress/vue": "^3.0.5",
+    "@cypress/webpack-dev-server": "^1.7.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.19.0",
     "@types/command-line-args": "^5.2.0",
     "@types/cookie-parser": "^1.4.2",
@@ -70,7 +78,9 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "babel-plugin-inline-dotenv": "^1.6.0",
+    "babel-plugin-istanbul": "^6.1.1",
     "concurrently": "^5.1.0",
+    "cypress": "^8.7.0",
     "eslint": "^7.7.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.0.0-0",
@@ -79,19 +89,32 @@
     "jasmine": "^3.10.0",
     "nodemon": "^2.0.4",
     "npm": "^8.1.3",
+    "nyc": "^15.1.0",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "start-server-and-test": "^1.14.0",
     "supertest": "^6.1.6",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.11.0",
-    "typescript": "~3.9.3"
+    "typescript": "~3.9.3",
+    "vue-template-compiler": "^2.6.14"
   },
   "_moduleAliases": {
     "@daos": "dist/server/daos",
     "@entities": "dist/server/entities",
     "@shared": "dist/server/shared",
     "@server": "dist/server/Server"
+  },
+  "nyc": {
+    "reporter": [
+      "json",
+      "html"
+    ],
+    "extension": [
+      ".vue",
+      ".ts"
+    ]
   }
 }

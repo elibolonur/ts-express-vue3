@@ -19,8 +19,8 @@ export default {
 
     const router = useRouter()
     const user = reactive({
-      email: "sean.maxwell@gmail.com",
-      password: "Password@1"
+      email: "",
+      password: ""
     })
 
     const login = () => {
