@@ -17,22 +17,21 @@ export default {
   setup() {
     const axios: AxiosStatic | undefined = inject("axios")
 
-    if (axios) {
-      const router = useRouter()
+    const router = useRouter()
 
-      const logout = () => {
-        axios.get("auth/logout")
-          .then(() => {
-            router.push("/")
-          })
-          .catch((error: Error) => {
-            alert(error.message)
-          })
-      }
+    const logout = () => {
+      (axios as AxiosStatic)
+        .get("auth/logout")
+        .then(() => {
+          router.push("/")
+        })
+        .catch((error: Error) => {
+          alert(error.message)
+        })
+    }
 
-      return {
-        logout
-      }
+    return {
+      logout
     }
   }
 }

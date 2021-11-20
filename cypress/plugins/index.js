@@ -13,10 +13,15 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars
+import * as fs from 'fs-extra';
+
 export default (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  on('task', {
+    'db:seed': () => {
+      fs.copyFileSync('cypress/fixtures/MockDb.json', 'server/daos/MockDb/MockDb.json');
+      return null;
+    },
+  })
   
   require("@cypress/code-coverage/task")(on, config);
   return config;

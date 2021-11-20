@@ -15,7 +15,7 @@ export default {
   setup() {
     const axios: AxiosStatic | undefined = inject("axios")
 
-    const users: object[] = reactive([]);
+    const users = reactive([]);
     
     (axios as AxiosStatic)
       .get("users/all")

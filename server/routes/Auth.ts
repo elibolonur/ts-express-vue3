@@ -75,6 +75,6 @@ export async function logout(req: Request, res: Response) {
  * @returns
  */
  export async function check(req: Request, res: Response) {
-    await jwtService.decodeJwt(req.signedCookies.ExpressGeneratorTs)
+    await jwtService.decodeJwt(req.signedCookies[cookieProps.key])
     return res.status(OK).end();
 }

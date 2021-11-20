@@ -1,9 +1,13 @@
 {
     "baseUrl": "http://localhost:8080",
     "env": {
-        "apiUrl": "http://localhost:3000",
+        "apiUrl": "http://localhost:3000/api",
         "codeCoverage": {
           "url": "http://localhost:3000/__coverage__"
         }
+    },
+    "component": {
+      "componentFolder": "src",
+      "testFiles": "**/*spec.{js,jsx,ts,tsx}"
     }
 }

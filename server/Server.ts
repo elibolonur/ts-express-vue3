@@ -38,11 +38,13 @@ app.use(cors({
     exposedHeaders: ['set-cookie']
 }));
 
+/* istanbul ignore next */
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+/* istanbul ignore next */
 // Security
 if (process.env.NODE_ENV === 'production') {
     app.use(helmet());
@@ -63,7 +65,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 /************************************************************************************
  *                              Serve front-end content
  ***********************************************************************************/
- if (process.env.NODE_ENV === 'production') {
+/* istanbul ignore next */
+if (process.env.NODE_ENV === 'production') {
     const viewsDir = path.join(__dirname, '../client');
     const staticDir = path.join(__dirname, '../client');
 

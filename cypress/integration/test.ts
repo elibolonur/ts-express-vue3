@@ -1,4 +1,9 @@
 describe('My First Test', () => {
+
+  before(() => {
+    cy.task('db:seed')
+  })
+
   it('Visits the app root url', () => {
     cy.visit('/')
     cy.get('input[name=email]').type("sean.maxwell@gmail.com")
@@ -6,6 +11,8 @@ describe('My First Test', () => {
     cy.contains('Login').click()
     cy.url().should('be.equal', `${Cypress.config().baseUrl}/restricted`)
     cy.get('[data-cy=logout]').click();
+    cy.url().should('be.equal', `${Cypress.config().baseUrl}/`)
+    cy.visit('/restricted')
     cy.url().should('be.equal', `${Cypress.config().baseUrl}/`)
   })
 });
